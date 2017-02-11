@@ -1,0 +1,1392 @@
+﻿
+1. SingleOrDefault() vs FirstorDefault() in Entity Framework C#?
+   SingleOrDefault() operator would throw an exception if more than one elements are satisfied the condition where as FirstorDefault() will not through any exception for the same
+
+
+2. Difference between ReadOnly and Constant in C#?
+	 ReadOnly :The value will be initialized only once from the constructor of the class.
+	 The difference is that the value of a static readonly field is set at run time, so it can have a different value for different executions of the program.
+	 However, the value of a const field is set to a compile time constant
+
+
+
+3. ViewData vs ViewBag vs TempData in ASP.Net MVC?
+
+ViewData is implemented by using ViewDataDictionary class which stored in CurrentRequestContext. So, ViewData life-cycle will end when the current request ends.
+
+ViewBag is also like ViewData, and only difference is it enable dynamically sharing the data using dynamics objects.
+
+TempData is a very short-lived instance, and you should only use it during the current and the subsequent requests only.This will be handy if you want to use Redirections(RedirectToAction, RedirectToRoute, Redirect) in ASP.net MVC and pass some data among redirects.
+TempData stores data in Session but framework disposes the data when current and subsequent requests ends.
+
+Session is long-lived(Never expires) data that belongs to user session.You need to be mindful when you use session variables which can be easily cause issues.
+
+4. Difference between IEnumerable vs List in C# ?
+
+	One important difference between IEnumerable and List (besides one being an interface and the other being a concrete class) is that IEnumerable is read-only and List is not.
+
+	So if you need the ability to make permanent changes of any kind to your collection (add & remove), you'll need List. If you just need to read, sort and/or filter your collection, IEnumerable is sufficient for that purpose.
+
+
+
+5. What is the Difference between ArrayList and List Class in C#?
+
+6 Use .bind() when you want that function to later be called with a certain context, useful in events. Use .call() or .apply() when you want to invoke the funciton immediately, and modify the context.
+
+
+7. A static constructor is used to initialize any static data, or to perform a particular action that needs performed once only. It is called automatically before the first instance is created or any static members are referenced.
+
+Static constructors have the following properties:
+
+A static constructor does not take access modifiers or have parameters.
+A static constructor is called automatically to initialize the class before the first instance is created or any static members are referenced.
+A static constructor cannot be called directly.
+The user has no control on when the static constructor is executed in the program.
+A typical use of static constructors is when the class is using a log file and the constructor is used to write entries to this file.
+Static constructors are also useful when creating wrapper classes for unmanaged code, when the constructor can call the LoadLibrary method.
+
+
+8. Promise API($q) in AngularJs??
+   http://odetocode.com/blogs/scott/archive/2014/05/20/using-resolve-in-angularjs-routes.aspx
+
+   
+9. Difference between Stored Proc abd user Defined Function in Microsoft SQL Server?
+http://www.c-sharpcorner.com/UploadFile/996353/difference-between-stored-procedure-and-user-defined-function/
+
+Differences between Stored Procedure and User Defined Function in SQL Server
+
+Sr.No.	User Defined Function	Stored Procedure
+1	 Function must return a value.	Stored Procedure may or not return values.
+2	Will allow only Select statements, it will not allow us to use DML statements.	Can have select statements as well as DML statements such as insert, update, delete and so on
+3	 It will allow only input parameters, doesn't support output parameters.	It can have both input and output parameters.
+4	It will not allow us to use try-catch blocks.	For exception handling we can use try catch blocks.
+5	Transactions are not allowed within functions.	Can use transactions within Stored Procedures.
+6	We can use only table variables, it will not allow using temporary tables.	Can use both table variables as well as temporary table in it.
+7	Stored Procedures can't be called from a function.	Stored Procedures can call functions.
+8	 Functions can be called from a select statement.	Procedures can't be called from Select/Where/Having and so on statements. Execute/Exec statement can be used to call/execute Stored Procedure.
+9	A UDF can be used in join clause as a result set.	Procedures can't be used in Join clause
+
+
+Q. Primary Key vs Unique Key in SQL Server?
+ Primary Key:
+
+	Can be only one in a table
+	In some DBMS it cannot be NULL - e.g. MySQL adds NOT NULL
+	Primary Key is a unique key identifier of the record
+	
+ Unique Key:
+
+	Can be more than one unique key in one table
+	Unique key can have null values
+	It can be a candidate key
+	Unique key can be null and may not be unique
+	
+------------------------------------------------------
+Q. What is microserices Architecture in Software Engineering?
+Microservices is an architectural style in which a large and complex applications are composed of one or more smaller services.
+ 1. Small and focused 
+ 2. Loosely Coupled
+ 3.Language Neutral
+ 4. Organized around a business capabilities and scenarios
+ 5. it helps to gain business agility
+  
+ 
+The communication between the microserices should be stateless using http protocol.
+
+
+Q. Hashtable vs Dictionary in C#?
+Difference between Hashtable and Dictionary. Hashtable and Dictionary are collection of data structures to hold data as key-value pairs. Dictionary is generic type, hash table is not a generic type. The Hashtable is a weakly typed data structure, so you can add keys and values of any Object Type to the Hashtable.
+
+Q. Why Dictionary is fast compare to list  in C#?
+http://stackoverflow.com/questions/16977694/c-sharp-why-is-dictionary-so-much-faster-than-list
+
+Differences between Hashtable and Dictionary
+
+Dictionary:
+
+Add method throws an ArgumentException when attempting to add a duplicate key.
+
+KeyNotFoundException is thrown when a requested key is not present.
+
+TryGetValue method as a more efficient way to retrieve values if a program often must try key values that are not in the dictionary,
+
+use the ContainsKey method to test whether a key exists before calling the Add method.
+
+The ConcurrentDictionary<TKey, TValue> class should be used when multiple threads might be accessing the collection simultaneously.
+
+Dictionary returns error if we try to find a key which does not exist.
+Dictionary faster than a Hashtable because there is no boxing and unboxing.
+Dictionary is a generic type which means we can use it with any data type.
+Hashtable:
+
+Hashtable returns null if we try to find a key which does not exist.
+Hashtable slower than dictionary because it requires boxing and unboxing.
+Hashtable is not a generic type,
+
+Q. Why Dictionary is much more faster than List  in C#?
+ http://stackoverflow.com/questions/16977694/c-sharp-why-is-dictionary-so-much-faster-than-list
+ 
+ When using Dictionary you are using a key to retrieve your information, which enables it to find it more efficiently, with List you are using Single Linq expression, which since it is a list, has no other option other than to look in entire list for wanted the item.
+ 
+ 
+
+Q. List vs ArrayList  in C#?
+ Ans: Yes, pretty much. List<T> is a generic class. It allows storing values of a specific type without casting to or from object (which would have incurred boxing/unboxing overhead when T is a value type in the ArrayList case). ArrayList simply stores object references. As a generic collection, List<T> implements the generic IEnumerable<T> interface and can be used easily in LINQ (without requiring any Cast or OfType call).
+
+ArrayList belongs to the days that C# didn't have generics. It's deprecated in favor of List<T>. You shouldn't use ArrayList in new code that targets .NET >= 2.0 unless you have to interface with an old API that uses it.
+
+
+ArrayList provides some thread-safety through the Synchronized property, which returns a thread-safe wrapper around the collection. The wrapper works by locking the entire collection on every add or remove operation. Therefore, each thread that is attempting to access the collection must wait for its turn to take the one lock. This is not scalable and can cause significant performance degradation for large collections.
+
+List<T> does not provide any thread synchronization; user code must provide all synchronization when items are added or removed on multiple threads concurrently.
+
+
+Q. What is the difference between Dictionary and List  in C#?
+
+		http://stackoverflow.com/questions/7914830/what-is-the-difference-between-list-and-dictionary-in-c-sharp
+		
+		  List<> and Dictionary<,> - pretty different data structures which used for different purposes, List is simply a set of items and Dictionary is a set of key-value pairs.
+
+		Dictionary is pretty useful when you have a set of complex objects and want to have fast access by let's say ObjectName/ObjectId, in this case you create IDictionary<string, TObject> where key would be ObjectId and Value would be an object itself.
+
+		Some differences:
+
+		List persist order of the items, Dictionary does not
+		List allow fast access by index
+		List support built in QuickSort algorithm for fast data sorting
+		Dictionary allows ~O(1) time complexity to access an item (value) by a key
+
+1. What is Static Constructor in C# ? What is the use ?
+
+	A static constructor is used to initialize any static data, or to perform a particular action that needs performed once only. It is called automatically before the first instance is created or any static members are referenced.
+
+	Static constructors have the following properties:
+
+	A static constructor does not take access modifiers or have parameters.
+	A static constructor is called automatically to initialize the class before the first instance is created or any static members are referenced.
+	A static constructor cannot be called directly.
+	The user has no control on when the static constructor is executed in the program.
+	A typical use of static constructors is when the class is using a log file and the constructor is used to write entries to this file.
+	Static constructors are also useful when creating wrapper classes for unmanaged code, when the constructor can call the LoadLibrary method.
+	
+Q. About Static Constructor  in C#?
+		
+	1.It can only access the static member(s) of the class.
+
+	Reason : Non static member is specific to the object instance. If static constructor are allowed to work on non static members it will reflect the changes in all the object instance, which is impractical.
+
+	2.There should be no parameter(s) in static constructor.
+
+	Reason: Since, It is going to be called by CLR, nobody can pass the parameter to it. 3.Only one static constructor is allowed.
+
+	Reason: Overloading needs the two methods to be different in terms of method/constructor definition which is not possible in static constructor.
+
+	4.There should be no access modifier to it.
+
+	Reason: Again the reason is same call to static constructor is made by CLR and not by the object, no need to have access modifier to it
+	
+
+Q. How to implement thread safe Singleton class  in C#?	
+2. What is Static Override methods in C# ?
+3. Readonly vs Static keyword  in C#.
+  
+5. Base and New keyword in C#.
+  The base keyword is used to refer to the base class when chaining constructors or when you want to access a member (method, property, anything) in the base class that has been overridden or hidden in the current class. For example.
+  Base is used when you override a method in a derived class but just want to add additional functionality on top of the original functionality
+
+	For example:
+
+	  // Calling the Area base method:
+	  public override void Foo() 
+	  {
+		 base.Foo(); //Executes the code in the base class
+
+		 RunAdditionalProcess(); //Executes additional code
+	  }
+
+6. Difference between Ref and Out parameter in C#.
+Ans- 
+The ref modifier means that:
+ a) The value is already set and The method can read and modify it.
+
+ The out modifier means that:
+ a) The Value isn't set and can't be read by the method until it is set.
+ b) The method must set it before returning.
+
+ Or, ref tells the compiler that the object is initialized before entering the function, while out tells the compiler that the object will be initialized inside the function.
+
+7. Primitive and non-premitive types in C#
+
+8. What is the difference between Finalize() and Dispose()  in C#?
+  
+
+	Finalizers are run by the Garbage Collection before an object that is eligible for collection is reclaimed.  Dispose() is meant for cleaning up unmanaged resources, like network connections, files, handles to OS stuff, &c. It works best in conjunction with the using block where the compiler makes sure that  Dispose() will be called immediately once you are done with an object – and also ensures that you cannot work with the object anymore once it's disposed.
+
+	Finalize: undeterministic nondeterministic destructor/finalizer called automatically by the Garbage Collector when there are no more references to this instance.
+	Dispose: deterministically called by the developer on an object implementing IDisposable to free resources.
+
+
+
+9. How is the using() pattern useful? What is IDisposable? How does it support deterministic finalization?
+
+	As a rule, when you use an IDisposable object, you should declare and instantiate it in a using statement. The using statement calls the Dispose method on the object in the correct way, and (when you use it as shown earlier) it also causes the object itself to go out of scope as soon as Dispose is called. Within the using block, the object is read-only and cannot be modified or reassigned.
+	The using statement ensures that Dispose is called even if an exception occurs while you are calling methods on the object. You can achieve the same result by putting the object inside a try block and then calling Dispose in a finally block; in fact, this is how the using statement is translated by the compiler. The code example earlier expands to the following code at compile time (note the extra curly braces to create the limited scope for the object):
+
+
+
+
+
+Q. Difference between List<T> and LinkedList<T>  in C#?
+ Well, List<T> is basically backed by an array which is usually bigger than the current number of items. The elements are put in an array, and a new array is created when the old one runs out of space. This is fast for access by index, but slow at removing or inserting elements within the list or at the start. Adding/removing entries at the end of the list is reasonably cheap.
+
+LinkedList<T> is a doubly-linked list - each node knows its previous entry and its next one. This is fast for inserting after/before a particular node (or the head/tail), but slow at access by index.
+
+LinkedList<T> will usually take more memory than List<T> because it needs space for all those next/previous references - and the data will probably have less locality of reference, as each node is a separate object. On the other hand, a List<T> can have a backing array which is much larger than its current needs.
+
+Q. ref vs out keyword in C#?
+Ref: The ref keyword is used to pass an argument as a reference. This means that when value of that parameter is changed in the method, it gets reflected in the calling method. An argument that is passed using a ref keyword must be initialized in the calling method before it is passed to the called method.
+
+
+Q. What is using Statement in C#?
+	 C#, through the .NET Framework common language runtime (CLR), automatically releases the memory used to store objects that are no longer required. The release of memory is non-deterministic; memory is released whenever the CLR decides to perform garbage collection. However, it is usually best to release limited resources such as file handles and network connections as quickly as possible.
+
+	The using statement allows the programmer to specify when objects that use resources should release them. The object provided to the using statement must implement the IDisposable interface. This interface provides the Dispose method, which should release the object's resources.
+
+Q. How to Force Garbage collector to run in .NET?
+	The best practise is to not force a garbage collection in most cases.
+
+	GC.Collect();
+	GC.WaitForPendingFinalizers();
+	it will call GC explicitly throughout your code, don't forget to call GC.WaitForPendingFinalizers(); after GC.Collect().
+
+
+	
+Q. What is resolve route in Angularjs?
+ A resolve is a property you can attach to a route in both ngRoute and the more robust UI router.
+ A resolve contains one or more promises that must resolve successfully before the route will change.
+ This means you can wait for data to become available before showing a view, and simplify the initialization of the model inside a controller
+ because the initial data is given to the controller instead of the controller needing to go out and fetch the data.
+
+  Q. Difference between static class and singleton pattern  in C#?
+		  Static Class:-
+
+		You cannot create the instance of static class.
+		Loaded automatically by the .NET Framework common language runtime (CLR) when the program or namespace containing the class is loaded.
+		Static Class cannot have constructor.
+		We cannot pass the static class to method.
+		We cannot inherit Static class to another Static class in C#.
+		A class having all static methods.
+		Better performance (static methods are bonded on compile time)
+		Singleton:-
+
+		You can create one instance of the object and reuse it.
+		Singleton instance is created for the first time when the user requested.
+		Singleton class can have constructor.
+		You can create the object of singleton class and pass it to method.
+		Singleton class does not say any restriction of Inheritance.
+		We can dispose the objects of a singleton class but not of static class.
+		Methods can be overridden.
+		Can be lazy loaded when need (static classes are always loaded).
+		We can implement interface(static class can not implement interface).
+		
+		
+Q. Difference between Virtual and Abstract Methods in C#?
+  
+		First of all you should know the difference between a virtual and abstract method.
+
+		Abstract Method
+
+		Abstract Method resides in abstract class and it has no body.
+		Abstract Method must be overridden in non-abstract child class.
+
+		Virtual Method
+
+		Virtual Method can reside in abstract and non-abstract class.
+		It is not necessary to override virtual method in derived but it can be.
+		Virtual method must have body ....can be overridden by "override keyword".....
+
+Q. Exact difference between overriding and hiding in C#?
+    
+    1. Overriding
+
+		In case of the overriden property, base class' virtual method's slot is replaced by a different implementation.
+		 Compiler sees the method as virtual, and must resolve its implementation during run-time using the object's virtual table.
+
+		{
+			Base b = new Base();
+			Console.WriteLine(b.Name); // prints "Base"
+
+			b = new Overriden();
+			// Base.Name is virtual, so the vtable determines its implementation
+			Console.WriteLine(b.Name); // prints "Overriden"
+
+			Overriden o = new Overriden();
+			// Overriden.Name is virtual, so the vtable determines its implementation
+			Console.WriteLine(o.Name); // prints "Overriden"
+		}
+2. Hiding
+
+		When a method or a property is hidden using the new keyword, the compiler creates a new non-virtual method for the derived class only;
+		 base class' method remains untouched.
+
+		If the type of the variable is Base (i.e. only contains the virtual method), its implementation will be resolved through the vtable.
+		 If the type of the variable is New, then the non-virtual method or property will be invoked.
+
+		{
+			Base b = new Base();
+			Console.WriteLine(b.Name); // prints "Base"
+
+			b = new New();
+			// type of `b` variable is `Base`, and `Base.Name` is virtual,
+			// so compiler resolves its implementation through the virtual table
+			Console.WriteLine(b.Name); // prints "Base"
+
+			New n = new New();
+			// type of `n` variable is `New`, and `New.Name` is not virtual,
+			// so compiler sees `n.Name` as a completely different property
+			Console.WriteLine(n.Name); // prints "New"
+		}	
+				
+
+
+Q. Building block of .Net ?				
+	Introducing the Building Blocks of the .NET Platform (the CLR,CTS,and CLS)
+
+	Another building block of the .NET platform is the Common Type System,or CTS.The CTS specification fully describes all possible data types
+       and programming constructs supported by the runtime, specifies how these entities can interact with each other, and details how they are 
+       repre- sented in the .NET metadata format (more information on metadata later in this chapter; see Chapter 16 for complete details).
+ Understand that a given .NET-aware language might not support each and every feature defined by the CTS.
+
+ The Common Language Specification(CLS)is a related specification that defines a subset of common types and programming constructs that all
+ .NET programming lan- guages can agree on. Thus, if you build .NET types that only expose CLS-compliant features,
+ you can rest assured that all .NET-aware languages can consume them. Conversely, if you make use of a data type or programming construct that is outside
+ of the bounds of the CLS, you cannot guarantee that every .NET programming language can interact with your .NET code library
+
+Q. Difference between Any() and Exist() in LINQ?
+
+Q. Difference between DataReader and DataSet in ADO.Net ??
+	 DataReader is a forward-only iterator over a set of results. It's usually the most efficient way to deal with records when you don't need random access (in other words you can't go backwards). It is "scalable" to any number of records, at least in terms of memory pressure, since it only loads one record at a time. One typical way to get a DataReader is by using the ExecuteReader method of a DbCommand.
+  
+	DataSet represents a set of DataTable objects. More often than not, it will just contain one table, but if you do a query with multiple SELECT statements, the DataSet will contain a table for each. Because this is an in-memory representation, you have to be careful about how much data you pull into a DataSet. You can "Fill" a DataSet using the Fill method of a DataAdapter.
+
+	DataAdapter is a kind of "pipe" that funnels data from a DB engine into a DataSet. That's why you'll have one DataAdapter implementation for each DB provider type. One DataSet, many providers.
+
+	DataView is like a virtual subset of a DataTable.
+  
+
+Q. Difference between ExecuteNonQuery and ExecuteReader() and ExecuteScalar() in ADO.Net??
+
+Q. Difference between Factory and Abstract Factory??
+
+Q. What is Composition technique in software development?
+
+
+Q. Difference between StoredProc and Function in Microsoft SQL Server?
+ http://stackoverflow.com/questions/2039936/difference-between-stored-procedures-and-user-defined-functions
+
+Q. Difference between Delete and Truncate in Microsoft SQL Server??
+    http://stackoverflow.com/questions/139630/whats-the-difference-between-truncate-and-delete-in-sql
+
+Q. What is index in SQL Server?
+
+Q. How to decide the fields for Non-Clustered index in Microsoft SQL Server??
+
+Q. How do you generate proxy for WCF services??
+
+	Adding Service Reference
+	Implementing ClientBase
+	Using Tool i.e. SvcUtil.exe
+
+Q. Keep and peek in TempData in ASP.Net MVC?
+		 TempData is also a dictionary object that stays for the time of an HTTP Request. So, TempData can be used to maintain data between one controller action to the other controller action.
+
+		TempData is used to check the null values each time. TempData contain two method keep() and peek() for maintain data state from one controller action to others.
+
+		When TempDataDictionary object is read, At the end of request marks as deletion to current read object.
+
+		The keep() and peek() method is used to read the data without deletion the current read object.
+
+		You can use Peek() when you always want to hold/prevent the value for another request. You can use Keep() when prevent/hold the value depends on additional logic.
+
+		Overloading in TempData.Peek() & TempData.Keep() as given below.
+
+		TempData.Keep() have 2 overloaded methods.
+
+		void keep() : That menace all the data not deleted on current request completion.
+		void keep(string key) : persist the specific item in TempData with help of name.
+		TempData.Peek() no overloaded methods.
+
+		object peek(string key) : return an object that contain items with specific key without mak
+
+  Ans: http://stackoverflow.com/questions/21252888/tempdata-keep-vs-peek
+  
+Q. Difference between ActionResult and ViewResult in ASP.Net MVC?  
+
+  ViewResult derives from ActionResult. Other derived classes include JsonResult and PartialViewResult. You declare it this way so you can take advantage of polymorphism and return different types in the same method.
+
+Q. Can i have try block without catch?
+
+Q. Difference between abstract class and interface?
+
+Q. How IIS handles the Http Request??
+
+Q. Difference between WCF and Web API?
+
+ https://msdn.microsoft.com/en-us/library/jj823172.aspx
+
+Q. How to return XML from Database SP??
+
+Q. What is $emit and $on in AngularJS?
+  $emit =  sending data from child to parent controller
+  $obroadcast =  sending data from parent to child controller
+  $on = listen for the events
+  https://toddmotto.com/all-about-angulars-emit-broadcast-on-publish-subscribing/
+
+Q. Why can't static classes have non-static methods and variables?
+   
+	Static classes can't be instantiated in the first place, so even if you could declare non-static (instance) members, they can never be accessed. Since there really isn't a point allowing it for that reason, the language simply prohibits it.
+
+Q. Difference between protected and protected internal in C#?
+    
+
+	protected:
+
+	The type or member can be accessed only by code in the same class or struct, or in a class that is derived from that class.
+
+	internal:
+
+	The type or member can be accessed by any code in the same assembly, but not from another assembly.
+
+	protected internal:
+
+	The type or member can be accessed by any code in the assembly in which it is declared, or from within a derived class in another assembly. Access from another assembly must take place within a class declaration that derives from the class in which the protected internal element is declared, and it must take place through an instance of the derived class type.
+
+
+
+Q. What's the difference between a temp table and table variable in SQL Server?
+   Temp table: A Temp table is easy to create and back up data.
+
+	Table variable: But the table variable involves the effort when we usually create the normal tables.
+	Temp table: Temp table result can be used by multiple users.
+
+	Table variable: But the table variable can be used by the current user only. 
+	Temp table: Temp table will be stored in the tempdb. It will make network traffic. When we have large data in the temp table then it has to work across the database. A Performance issue will exist.
+
+	Table variable: But a table variable will store in the physical memory for some of the data, then later when the size increases it will be moved to the tempdb.
+	Temp table: Temp table can do all the DDL operations. It allows creating the indexes, dropping, altering, etc..,
+
+	Table variable: Whereas table variable won't allow doing the DDL operations. But the table variable allows us to create the clustered index only.
+	Temp table: Temp table can be used for the current session or global. So that a multiple user session can utilize the results in the table.
+
+	Table variable: But the table variable can be used up to that program. (Stored procedure)
+	Temp table: Temp variable cannot use the transactions. When we do the DML operations with the temp table then it can be rollback or commit the transactions.
+
+	Table variable: But we cannot do it for table variable.
+	Temp table: Functions cannot use the temp variable. More over we cannot do the DML operation in the functions .
+
+	Table variable: But the function allows us to use the table variable. But using the table variable we can do that.
+	Temp table: The stored procedure will do the recompilation (can't use same execution plan) when we use the temp variable for every sub sequent calls.
+
+	Table variable: Whereas the table variable won't do like that.
+
+Q. Casting vs using the 'as' keyword in the CLR in C#?
+	The as operator can only be used on reference types.
+	it cannot be overloaded.
+	it will return null if the operation fails.
+	It will never throw an exception.
+
+	Casting can be used on any compatible types.
+	it can be overloaded
+	and it will throw an exception if the operation fails.
+
+	The choice of which to use depends on the circumstances. Primarily, it's a matter of whether you want to throw an exception on a failed conversion.
+	
+	The as keyword works the same as an explicit cast between compatible reference types with the major difference that it does not raise an exception 	if conversion fails. Rather, it yields a null value in the target variable. Since Exceptions are very expensive in terms of performance, it is 	considered a much better method of casting.
+
+Q. is Keyword in C#?
+
+    Checks if an object is compatible with a given type. For example, the following code can determine if an object is an instance of the MyObject type, or a type that derives from MyObject:
+	if (obj is MyObject)
+	{
+	}
+	An is expression evaluates to true if the provided expression is non-null, and the provided object can be cast to the provided type without causing an exception to be thrown.
+	The is keyword causes a compile-time warning if the expression is known to always be true or to always be false, but typically evaluates type compatibility at run time.
+	The is operator cannot be overloaded.
+	Note that the is operator only considers reference conversions, boxing conversions, and unboxing conversions. Other conversions, such as user-defined conversions, are not considered.
+	Anonymous methods are not allowed on the left side of the is operator. This exception includes lambda expressions.
+	
+Q. Array vs List?
+   Definitely use a List<T> any time you want to add/remove data, since resizing arrays is expensive. If you know the data is fixed length, and you want to micro-optimise for some very specific reason (after benchmarking), then an array may be useful.
+
+	List<T> offers a lot more functionality than an array (although LINQ evens it up a bit), and is almost always the right choice.	
+	
+Q. What is the difference between varchar and nvarchar in Microsoft SQL Server?
+
+	An nvarchar column can store any Unicode data. A varchar column is restricted to an 8-bit codepage. Some people think that varchar should be used because it takes up less space. I believe this is not the correct answer. Codepage incompatabilities are a pain, and Unicode is the cure for codepage problems. With cheap disk and memory nowadays, there is really no reason to waste time mucking around with code pages anymore.
+
+	All modern operating systems and development platforms use Unicode internally. By using nvarchar rather than varchar, you can avoid doing encoding conversions every time you read from or write to the database. Conversions take time, and are prone to errors. And recovery from conversion errors is a non-trivial problem.
+
+	If you are interfacing with an application that uses only ASCII, I would still recommend using Unicode in the database. The OS and database collation algorithms will work better with Unicode. Unicode avoids conversion problems when interfacing with other systems. And you will be preparing for the future. And you can always validate that your data is restricted to 7-bit ASCII for whatever legacy system you're having to maintain, even while enjoying some of the benefits of full Unicode storage.
+
+Q. Union and UnionAll in Microsoft SQL Server?
+
+	 UNION OPERATOR (Alias: DISTINCT UNION ORDERED LIST): is used to combine multiple result sets into one result set and will remove any duplicates rows that exist.  Basically it is performing a DISTINCT operation across all columns in the result set.
+
+	UNION ALL OPERATOR:  is used to combine multiple result sets into one result set, but it does not remove any duplicate rows.  Because this does not remove duplicate rows this process is faster, but if you don’t want duplicate records you will need to use the UNION operator instead.
+
+	Performance TIP:  Compared UNION ALL operator, UNION operator has the extra overhead of removing duplicate rows and sorting results. So, If we know that all the records returned by our query is unique from union then use UNION ALL operator instead of UNION Operator.
+
+	 Following are the constraints for using UNION/UNION ALL Operator:
+
+All the query’s which need to combine need to have the same number of columns
+Column should be of the same data type/compatible data types
+ORDER BY clauses can only be issued for the overall result set and not within each result set
+Column names of the final result set will be from the first query
+	
+Q. What is the difference between a static and const variable in C#?
+	A constant value cannot change. A static variable exists to a function, or class, rather than an instance or object.
+
+   These two concepts are not mutually exclusive, and can be used together.
+   Static variables are common across all instances of a type.
+
+constant variables are specific to each individual instance of a type but their values are known and fixed at compile time and it cannot be changed at runtime.
+
+unlike constants, static variable values can be changed at runtime.
+
+Q. ExecuteScalar in Microsoft SQL Server?
+  Executes the query, and returns the first column of the first row in the result set returned by the query. Additional columns or rows are ignored.
+  
+
+Q. What is partial class in C#?
+
+It is possible to split the definition of a class or a struct, an interface or a method over two or more source files. Each source file contains a section of the type or method definition, and all parts are combined when the application is compiled.
+
+Q. Difference between == and .Equals() in C#?
+
+ “==” compares if the object references are same while “.Equals()” compares if the contents are same.
+ 
+Q. Difference between compile and link in AngularJS?
+ 
+
+Q. Difference between Abstraction and Encapsulation?
+http://www.c-sharpcorner.com/blogs/abstraction-and-encapsulation1
+
+  They are different concepts. Abstraction is the process of refining away all the unneeded/unimportant attributes of an object and keep only the characteristics best suitable for your domain.
+
+Q. Difference between Abstract and Override method in C#?
+
+Q. What are indexes and what is the difference between clustered and non-clustered in Microoft SQL Server?
+    
+	Clustered Index
+
+	Only one per table
+	Faster to read than non clustered as data is physically stored in index order
+
+	Non Clustered Index
+
+	Can be used many times per table
+	Quicker for insert and update operations than a clustered index
+	Both types of index will improve performance when select data with fields that use the index but will slow down update and insert operations.
+
+	Because of the slower insert and update clustered indexes should be set on a field that is normally incremental ie Id or Timestamp.
+
+   SQL Server will normally only use an index if its selectivity is above 95%.
+
+
+Q. Different types of collections in .NET?
+
+Q. What are generics in C#?
+
+	Generics are the most powerful feature of C# 2.0. Generics allow you to define type-safe data structures, without committing to actual data types. This results in a significant performance boost and higher quality code, because you get to reuse data processing algorithms without duplicating type-specific code. 
+	In concept, generics are similar to C++ templates, but are drastically different in implementation and capabilities.
+	A great example are the many collection classes in .NET. Each collection class has it's own implementation of how the collection is created and managed. But they use generics to allow their class to work with collections of any type.
+
+
+Q. What are the different types of polymorphism?
+   Compile Time Polymorphism
+
+	Method overloading is a great example. You can have two methods with the same name but with different signatures. The compiler will choose the correct version to use at compile time.
+	Operator overloading is another good example.
+	
+	Run-Time Polymorphism
+
+	Overriding a virtual method from a parent class in a child class is a good example. Another is a class implementing methods from an Interface. 
+
+
+Q. Response.redirect vs Server.Transfer in ASP.Net Webform?
+
+Response.Redirect() will send you to a new page, update the address bar and add it to the Browser History. On your browser you can click back.
+
+Server.Transfer() does not change the address bar. You cannot hit back.
+
+I use Server.Transfer() when I don't want the user to see where I am going. Sometimes on a "loading" type page.
+
+Otherwise I'll always use Response.Redirect().
+
+
+Q. Http Handler vs Http Module in ASP.Net?
+	
+An ASP.NET HTTP handler is the process (frequently referred to as the "endpoint") that runs in response to a request made to an ASP.NET Web application. The most common handler is an ASP.NET page handler that processes .aspx files. When users request an .aspx file, the request is processed by the page through the page handler. You can create your own HTTP handlers that render custom output to the browser.
+
+
+An HTTP module is an assembly that is called on every request that is made to your application. HTTP modules are called as part of the ASP.NET request pipeline and have access to life-cycle events throughout the request. HTTP modules let you examine incoming and outgoing requests and take action based on the request.
+Statistics and logging   Because HTTP modules are called on every request, you can gather request statistics and log information in a centralized module
+
+Q. Difference between delegate and events?
+   
+   An Event declaration adds a layer of abstraction and protection on the delegate instance. This protection prevents clients of the delegate from resetting the delegate and its invocation list and only allows adding or removing targets from the invocation list.
+   
+   
+   
+ Q. Application and Session State have a very important difference:
+
+	Application state is a data repository available to all classes in an ASP.NET application. Application state is stored in memory on the server and is faster than storing and retrieving information in a database. Unlike session state, which is specific to a single user session, application state applies to all users and sessions. Therefore, application state is a useful place to store small amounts of often-used data that does not change from one user to another
+  
+  
+   Session state variables are available across all pages, but only for a given single session. Session variables are like single-user global data. Only the current session has access to its Session state.
+
+	Application State variables are available across all pages and across all sessions. Application	 State variables are like multi-user global data. All sessions can read and write Application State variables.  
+	
+Q. If we have two versions of the same assembly in GAC how to we make a choice?
+
+   you need to specify “bindingRedirect” in your config file	.
+   
+ Q. What is Delayed Signing in .Net ?
+ 
+ 
+ Q. Solid principle?
+    
+	Open-Closed Principle, which states that software entities – such as classes, modules, functions and so on – should be open for extension but closed for modification. The idea is that it’s often better to make changes to things like classes by adding to or building on top of them (using mechanisms like subclassing or polymorphism) rather than modifying their code.
+	
+	Liskov Substitution Principle, which states that subclases should be substitutable for the classes from which they were derived. For example, if MySubclass is a subclass of MyClass, you should be able to replace MyClass with MySubclass without bunging up the program.
+	
+Q. Which are the various modes of storing ASP.NET session?
+   Performance considerations
+
+	InProc - Fastest, but the more session data, the more memory is consumed on the web server, and that can affect performance.
+
+	StateServer - When storing data of basic types (e.g. string, integer, etc), in one test environment it's 15% slower than InProc. However, the cost of serialization/deserialization can affect performance if you're storing lots of objects. You have to do performance testing for your own scenario.
+
+	SQLServer - When storing data of basic types (e.g. string, integer, etc), in one test environment it's 25% slower than InProc. Same warning about serialization as in StateServer.
+	Robustness
+
+	InProc - Session state will be lost if the worker process (aspnet_wp.exe) recycles, or if the appdomain restarts. It's because session state is stored in the memory space of an appdomain. For details, see KB324772.
+
+	StateServer - Solvef the session state loss problem in InProc mode. Allows a webfarm to store session on a central server. Single point of failure at the State Server. SQLServer - Similar to StateServer. Moreover, session state data can survive a SQL server restart, and you can also take advantage of SQL server failover cluster, after you've followed instructions in KB 311029.
+	
+	
+	Delayed signing refers to a technique of partially signing assemblies while they are in development. Signing an assembly basically certifies that assembly by the manufacturer and prevents tampering and hi-jacking of that assembly. The signing is accomplished by using public key/private key encoding of parts ...
+	
+Q. How performance is affected due to boxing and unboxing in C#?
+
+   When boxing and unboxing happens the data needs to jump from stack memory to heap and vice-versa which is a bit of memory intensive process.  As a good practice avoid boxing and unboxing where ever possible.
+   
+   	
+Q. Lazy Loading vs Eager Loading in Entity Framework?
+
+Q. How can we add relation between tables in a Dataset ADO.Net?
+   dataSet.Relations.Add(dataSet.Tables["Customers"].Columns["customerId"],
+   dataSet.Tables["Orders"].Columns["customerId"])
+	
+Q. Difference between Select() and SelectMany() in LINQ C#?
+
+
+Q. What is ng-template in AngularJS?
+
+
+Q. What is filters in AngularJS?
+
+  https://docs.angularjs.org/api/ng/filter/filter
+  
+Q. What is difference between $http and $resource  in AngularJS?
+
+$resource is built on top of $http.
+
+$http is normal ajax, it can be used for any form of web service.
+
+$resource is specifically for RESTful service.
+
+
+Q. $scope vs scope  in AngularJS?
+
+Q. Isolated scope vs shared vs parent scope in AngularJS?
+
+With respect to the type of scope to use, here are some of the guiding principles i follow. This knowledge also stem looking an number of Angular and third party directives
+
+Use the parent scope if you just need to add some behaviour to existing DOM elements, ng-click, ng-show, ng-class are good examples of it. These directives do not come with their own template UI but just extend behaviour of exiting html elements.
+
+Use scope:true, or a child scope when your directive plans to add new properties on the scope and do not want to pollute the parent scope with such properties. Very few Angular directive do it, ng-repeat creates a child scope for each iterated element and exposes some properties on the child scope like $index. I would suggest when creating directives at least create this.
+
+Isolated scope created using scope:{} are used by true components where input to the directive is explicit through scope property and is not affect by parent scope directly. This helps us create a truely self contained reusable directive. There are some challenges with isolated directive such as two isolated directives cannot be applied on same html element, that you need to be aware of.
+
+
+
+Q. What is angular.noop?
+
+Q. Difference between link and compile phase in AngularJS custom directive?
+
+
+Q. Promise and $q  in AngularJS?
+
+ defer();
+ Creates a Deferred object which represents a task which will finish in the future.
+
+ resolve(value) – resolves the derived promise with the value. If the value is a rejection constructed via $q.reject, the promise will be rejected instead.
+
+ reject(reason) – rejects the derived promise with the reason. This is equivalent to resolving it with a rejection constructed via $q.reject.
+
+ notify(value) - provides updates on the status of the promise's execution. This may be called multiple times before the promise is either resolved or rejected.
+ 
+ all(promises);
+Combines multiple promises into a single promise that is resolved when all of the input promises are resolved.
+
+race(promises);
+Returns a promise that resolves or rejects as soon as one of those promises resolves or rejects, with the value or reason from that promise.
+
+
+
+Q. What is $apply , $digest in AngularJS?
+
+
+Q. {{}} and ng-bind , ng-model  in AngularJS??
+
+ng-bind has one-way data binding ($scope --> view). It has a shortcut {{ val }} which displays the scope value $scope.val inserted into html where val is a variable name.
+
+ng-model is intended to be put inside of form elements and has two-way data binding ($scope --> view and view --> $scope) e.g. <input ng-model="val"/>.
+
+Q. Custom Filter  in AngularJS?
+
+Q. Pre and Post linking function  in AngularJS?
+   
+pre - link
+
+The link function is responsible for registering DOM listeners as well as updating the DOM. It is executed after the template has been cloned. This is where most of the directive logic will be put.
+You can update the dom in the controller using angular.element but this is not recommended as the element is provided in the link function
+Pre-link function is used to implement logic that runs when angular js has already compiled the child elements but before any of the child element's post link have been called
+
+post-link
+
+directive that only has link function, angular treats the function as a post link
+post will be executed after compile, controller and pre-link funciton, so that's why this is considered the safest and default place to add your directive logic
+
+Q. The SortedList<TKey, TValue> generic class is a binary search tree with O(log n) retrieval, where n is the number of elements in the dictionary.
+
+SortedDictionary<TKey, TValue> has faster insertion and removal operations for unsorted data, O(log n) as opposed to O(n) for SortedList<TKey, TValue> 
+
+Q. Stack and Heap Memory in C#?
+
+	Stack is used for static memory allocation.
+	Heap for dynamic memory allocation.
+	
+	
+Q. How to implement Custom Model binder in MVC?
+   http://odetocode.com/blogs/scott/archive/2009/04/27/6-tips-for-asp-net-mvc-model-binding.aspx
+  
+Q. How to implement Custom View Engine?
+
+Q. What is Dependency injection? Which Framework you have used for Dependency injection?
+
+Q. Difference between finalize and dispose?
+
+Q. Write a program to find the elements in an Array which occurs more than twice?
+   input = [1,2,3,4,10,3,3,1,1];
+   output = [1,3]
+
+Q. How ASP.net runtime creates the instance of Controller?
+
+Q. A class has public constructor and static construct, if i create a instance which will execute first?
+
+Q. Inside a class if i have static members, then for static members where the memory allocation will happen?
+   In Managed Heap or Stack?
+
+Q. What is Anonymous method in C#?
+Q. What is Extension method?
+Q. What is Lambda Expression?
+Q. Difference between var and dynamic keyword?
+Q. i have create one branc new application in Asp.net MVC using Visual Studio, and i have not touched the Web.config file. Now i run the application and delete the config file. What will happen?
+
+Q. What is updatable View in SQL?
+
+	The rules for updatable join views are as follows:
+
+	General Rule
+
+	Any INSERT, UPDATE, or DELETE operation on a join view can modify only one underlying base table at a time.
+
+	UPDATE Rule All updatable columns of a join view must map to columns of a key-preserved table. See "Key-Preserved Tables" for a discussion of key-preserved tables. If the view is defined with the WITH CHECK OPTION clause, then all join columns and all columns of repeated tables are non-updatable.
+
+	DELETE Rule
+
+	Rows from a join view can be deleted as long as there is exactly one key-preserved table in the join. If the view is defined with the WITH CHECK OPTION clause and the key preserved table is repeated, then the rows cannot be deleted from the view.
+
+	INSERT Rule An INSERT statement must not explicitly or implicitly refer to the columns of a nonkey preserved table. If the join view is defined with the WITH CHECK OPTION clause, INSERT statements are not permitted.
+
+
+Q. What is correlated Sub Query?
+   correlated subquery is evaluated once for each row processed by the outer query, it can be inefficient.    
+
+Q. What is index?What it does?Types of index?Clustered vs Non-clustered?
+
+
+1. Tell me about Agile methodology.
+2. What kind of design pattern u have used aprt from MVC.
+3. How to fade the button text using jquery.
+4. How to make jquery ajax call to call Web API, so that it shouldn't get cached.
+5. Can I create an instance of an abstract class, give the reason.
+6. What is partial class.
+7. Assume we have 
+abstract class BaseA having abstract Method A, B
+Derrived class B 
+condition is that method B shouldn't override.
+
+Q. Difference between Virtual vs. Final
+
+8. Can u create example for Interface, give an example?
+9. Real life scenario for Abstract and interface?
+10. In database interaction, what are the abstract and interface?
+11. I have String property, so without using any keyword how to make it readonly?
+
+12. Difference between String and StringBuilder?
+	The String object is immutable. Every time you use one of the methods in the System.String class, you create a new string object in memory, which requires a new allocation of space for that new object. In situations where you need to perform repeated modifications to a string, the overhead associated with creating a new String object can be costly. The System.Text.StringBuilder class can be used when you want to modify a string without creating a new object. For example, using the StringBuilder class can boost performance when concatenating many strings together in a loop.
+
+13. How the StringBuilder is memory efficient?
+14. Life cycle of ASP.Net?
+15. MVC Life Cycle?
+16. What are the different type of Session?
+17. When application terminated ?
+18. Application vs session in ASP.Net?
+19. In View state, what kind of cookies used?
+20. What is View State?
+21. What is the internal mechanism of view state?
+22. How does the view state retains its state behaviour?
+23. What are the contents of bootstrap?
+24. Why we are using bootstrap?
+25. What is dependency injection?
+26. How do u achieve constructor dependency injection?
+27. Real time scenario for constructor dependency injection?
+
+Q. Connection Pooling in ADO.Net?
+	 Connecting to a database server typically consists of several time-consuming steps. A physical channel such as a socket or a named pipe must be established, the initial handshake with the server must occur, the connection string information must be parsed, the connection must be authenticated by the server, checks must be run for enlisting in the current transaction, and so on.
+	 
+	In practice, most applications use only one or a few different configurations for connections. This means that during application execution, many identical connections will be repeatedly opened and closed. To minimize the cost of opening connections, ADO.NET uses an optimization technique called connection pooling.
+	Connection pooling reduces the number of times that new connections must be opened. The pooler maintains ownership of the physical connection. It manages connections by keeping alive a set of active connections for each given connection configuration. Whenever a user calls Open on a connection, the pooler looks for an available connection in the pool. If a pooled connection is available, it returns it to the caller instead of opening a new connection. When the application calls Close on the connection, the pooler returns it to the pooled set of active connections instead of closing it. Once the connection is returned to the pool, it is ready to be reused on the next Open call.
+
+Q. Why do we need Stored procs?
+
+  Stored procedures provide improved performance because fewer calls need to be sent to the database. For example, if a stored procedure has four SQL statements in the code, then there only needs to be a single call to the database instead of four calls for each individual SQL statement.
+  
+  There is a general opinion that business rules / logic should not be housed in the data tier
+  
+  Stored procedure code is not as robust as app code, particularly in the area of looping (not to mention that iterative constructs, like cursors, are slow and processor intensive)
+  
+Q. Defect Analysis(Asked in Microsoft)?
+Q. Difference between Provider and Factory in AngularJS?
+    Services
+
+	Syntax: module.service( 'serviceName', function ); 
+	A service is a constructor function.behind the scene it create an isntance using new keyword.
+	Result: When declaring serviceName as an injectable argument you will be provided with an instance of the function. In other words new FunctionYouPassedToService().
+
+	Factories
+
+	Syntax: module.factory( 'factoryName', function ); 
+	Result: When declaring factoryName as an injectable argument you will be provided with the value that is returned by invoking the function reference passed to module.factory.
+
+	Providers
+
+	Providers are the only service you can pass into your .config() function. Use a provider when you want to provide module-wide configuration for your service object before making it available.
+	
+	Syntax: module.provider( 'providerName', function ); 
+	Result: When declaring providerName as an injectable argument you will be provided with (new ProviderFunction()).$get().
+	The constructor function is instantiated before the $get method is called - ProviderFunction is the function reference passed to module.provider.
+
+	Providers have the advantage that they can be configured during the module configuration phase
+
+Q. Difference between $StateProvider and $routeProvider?
+Q. Execution phase of compile and linking function in custom directive? 
+	Directives that want to modify the DOM typically use the link option to register DOM listeners as well as update the DOM.
+	link function: where directive logic will be put.
+	
+	It is executed after the template has been cloned. 
+
+	Q. What is closure in Javascript?
+	Q. JSONP?
+	 JSONP (as in "JSON with Padding") is a method commonly used to bypass the cross-domain policies in web browsers (you are not allowed to make AJAX requests to a webpage perceived to be on a different server by the browser).
+
+	JSON and JSONP behave differently on both the client and the server. JSONP requests are not dispatched using the XMLHTTPRequest (and the associated browser methods), instead a <script> tag is created, whose source is set to the target URL. This script tag is then added to the DOM (normally the <head>).
+
+	Q. CORS? How can we handle Cors on client side?
+
+	
+Q.localStorage and sessionStorage in HTML5?
+
+	localStorage and sessionStorage are relatively new APIs (legacy browsers will support them) and are near identical (both in APIs and capabilities) with the sole exception of persistence. sessionStorage (as the name suggests) is only available for the duration of the browser session (and is deleted when the window is closed) - it does however survive page reloads (source DOM Storage guide - Mozilla Developer Network).
+
+	Clearly, if the data you are storing needs to be available on an ongoing basis then localStorage is preferable to sessionStorage - although you should note both can be cleared by the user so you should not rely on the continuing existence of data in either case.
+
+	localStorage and sessionStorage are perfect for persisting non-sensitive data needed within client scripts between pages (for example: preferences, scores in games). The data stored in localStorage and sessionStorage can easily be read or changed from within the client/browser so should not be relied upon for storage of sensitive or security related data within applications.
+
+
+1. How to set default page in MVC?
+2. How view communicates with Database in MVC Application?
+3. How error handling is done in Asp.Net Web Form and MVC both?
+4. Real life example of Abstract?
+5. Can we declare variable inside interface?
+6. What is bundle.config, explain about bundling, advantage of bundling?
+7. Difference between ASP.Net webform and MVC?
+
+Ques1) Expalain Collection and Generic in C#?
+	Ans - Two type of collection-
+	* Non-Generic collection - can hold the different type of data
+	* Generic collection - can hold the same type of data.
+
+Advantages of Generics in C#.
+	* To avoid 'boxing' and 'unboxing' for the type-safe.
+	* provides increased type-safety and in some cases can provide better performance.
+
+	Types of Generics - List, LinkedList, Dictionary, Queues, Stacks
+	Types of Non-Generics - ArrayList,
+
+a) ArrayList - 
+	ArrayList da = new ArrayList();
+	da.Add("Visual Basic");
+	foreach(object el in da)
+	{
+		Console.WriteLine(el);
+	}
+
+b) List -
+	List<string> langs = new List<string>();
+	langs.Add("Java");
+	foreach(string lang in langs)
+	{
+		Console.WriteLine(lang);
+	}
+
+c) LinkedList - 
+	LinkedList<int> nums = new LinkedList<int>();
+	nums.AddLast(23);
+	LinkedListNode<int> node = nums.Find(6); //find a specific node and add an element before it
+	nums.AddBefore(node, 5);
+	foreach(int num in nums)
+	{
+		Console.WriteLine(num);
+	}
+
+d) Dictionary -
+	Dictionary<string, string> domains = new Dictionary<string, string>();
+	domains.Add("de", "Germany");
+	foreach(KeyValuePair<string, string> kvp in domains)
+	{
+		Console.WriteLine("Key = {0}, Value = {1}", kvp.Key, kvp.Value);
+	}
+
+e) Queues - 
+	Queue<string> msgs = new Queue<string>();
+	msgs.Enqueue("Message 1");  //adds a message to the end of the queue.
+	foreach(string msg in msgs)
+	{
+		Console.WriteLine(msg);
+	}
+
+Ques2) Difference between Dictionary and Hashtable.
+	a) Generic <<<>>> Non-Generic.
+	b) Needs own thread synchronization <<<>>> Offers thread safe version through Synchronized() method. c) Enumerated item: KeyValuePair <<<>>> Enumerated item: DictionaryEntry.
+	d) Newer (> .NET 2.0) <<<>>> Older (since .NET 1.0)
+	e) Request to non-existing key throws exception <<<>>> Request to non-existing key returns null.
+	f) potentially a bit faster for value types <<<>>> bit slower (needs boxing/unboxing) for value types.
+
+Ques3) Similarities between Dictionary / Hashtable.
+	 a) Both are internally hashtables == fast access to many-item data according to key.
+	 b) Both need immutable and unique keys. c) Keys of both need own GetHashCode() method.
+
+Ques4) Difference between List and ArrayList.
+	a)"System.Collections.Generic" <<<>>> "System.Collections".
+	b) Need to specify object type which type of elements it contain <<<>>> No need to specify object type arraylist.
+	c) Boxing Unboxing not required <<<>>> Boxing and Unboxing required.
+
+Ques5) Difference between List and Dictionary.
+Ans- a) List accepts similar data type values at a time <<<>>>  Dictionary accepts different data types at a time.
+ b) List type is ideal for linear collections not accessed by keys <<<>>> Dictionary is composed of separate keys and values.
+
+Ques6) Difference between Array and ArrayList.
+Ans- a) Array is data type oriented <<<>>> arraylist is stores everything is type oriented.
+ b) array size has to be defined <<<>>> arraylist can grow dynamically.
+ c) Array is type safe <<<>>> arraylist needs type conversion and leads runtime error.
+ d) Array belongs to system.Array namespace <<<>>> Arraylist belongs to system.collection.
+
+Ques7) Difference between Dictionary and Hashtable in C# ?
+
+	a) Dictionary is generic type <<<>>> hash table is non-generic type. 
+
+	b) The Dictionary class is a strongly types < T Key, T Value > and you must specify the data types for both the key and value <<<>>> The Hashtable is a weakly typed data structure, so you can add keys and values of any Object Type to the Hashtable. 
+
+	c) Dictionary is faster because there is no boxing/unboxing (valuetypes don't need boxing) <<<>>> In Hashtable boxing/unboxing (valuetypes need boxing) will happened and which may have memory consumption as well as performance penalties.
+
+	d) In Dictionary there is no thread safety,
+	if you need thread safety you must implement your own synchronization <<<>>> Hashtable is thread safe for supports multiple reader threads and a single writer thread. That is the Hashtable allows ONE writer together with multiple readers without locking. e) In Dictionary, order is In Hashtable, order is not maintained.
+
+
+Q. What is Reflection?
+    The process of obtaining information about assemblies and the types defined within them, and creating, invoking, and accessing type instances at run time.
+	Reflection provides objects that describe assemblies, modules and types.
+	You can use reflection to dynamically create an instance of a type, bind the type to an existing object, or get the type from an existing object and invoke its methods or access its fields and properties.
+
+	If you are using attributes in your code, Reflection enables you to access them.
+	Reflection provides infrastructure used by language compilers to implement implicit late binding.
+	Reflection allows known data types to be inspected at runtime.
+	Reflection allows the enumeration of data types in a given assembly, and the members of a given class or value type can be discovered. This is true regardless of whether the type was known or referenced at compile time. This makes reflection a useful feature for development and code management tools.
+
+
+Q. What is Web Gardening? How would using it affect a design?
+    
+	When an application is hosted by multiple processes on the same server it is said to be a web garden environment.
+
+Q. What is WebFarm?
+    A web farm is a group of two or more servers used to host the same site.
+	Web farms increase the capacity of a web site, and improve availability by providing fail-over.
+	Web farms are universally used for high-traffic and mission critical web sites.
+
+	
+Q. What is the difference between: catch(Exception e){throw e;} and catch(Exception e){throw;}
+   
+    The first try-catch blocks simply rethrow the current exception, and that exception will keep its source and the stack trace.
+
+	The second try-catch block is different. When it throws the exception, it will change the source and the stack trace, so that it will appear that the exception has been thrown from this method, from that very line throw e on the method containing that try-catch block.
+
+
+Q. How to do deep copy in .NET?
+
+Q. Shallow copy vs Deep Copy ?
+
+   Shallow copying is creating a new object and then copying the non-static fields of the current object to the new object.
+   If a field is a value type --> a bit-by-bit copy of the field is performed;
+   for a reference type --> the reference is copied but the referred object is not;
+   therefore the original object and its clone refer to the same object.
+
+   In C# and VB.NET, shallow copy is done by the object method MemberwiseClone().
+
+   Deep copy is creating a new object and then copying the nonstatic fields of the current object to the new object.
+   If a field is a value type --> a bit-by-bit copy of the field is performed.
+   If a field is a reference type --> a new copy of the referred object is performed.
+
+   Note: the classes to be cloned must be flagged as [Serializable].
+   
+   
+
+Q. What is shadowing in .net?
+
+   Shadowing (method hiding)
+
+	A method or function of the base class is available to the child (derived) class without the use of the "overriding" keyword. The compiler hides the function or method of the base class. This concept is known as shadowing or method hiding. In the shadowing or method hiding, the child (derived) class has its own version of the function, the same function is also available in the base class.
+	
+	 Shadowing: The method called depends on the type of the reference at the point the call is made
+	 Overriding: The method called depends on the type of the object at the point the call is made.
+
+
+
+Q. Difference between IDENT_CURRENT, @@IDENTITY and SCOPE_IDENTITY ?
+	
+	a) When we use IDENT_CURRENT, it will return the last identity value generated for a specific table in any session and any scope.
+	
+	b) When we use @@IDENTITY, it will return the last identity value generated for any table in the current session, across all scopes.
+	
+	c) When we use SCOPE_IDENTITY, it will return the last identity value generated for any table in the current session and the current scopes
+	
+Q. What is the difference between String and string in C#?
+
+
+	string is an alias in C# for System.String.
+	So technically, there is no difference.
+	It's like int vs. System.Int32.
+
+	But int automatically references System.Int32 because it is the default, while there are many other integer(int) types. Using int just defaults to the 32 bit integer if you don´t explicitly tell in your code what type of integer it should expect. If you reference Int16 instead of int, you will specify the type from the default Int32.
+
+	As far as guidelines, I think it's generally recommended to use string any time you're referring to an object.
+
+	e.g.
+
+	string place = "world";
+	Likewise, I think it's generally recommended to use String if you need to refer specifically to the class.
+
+	e.g.
+
+	string greet = String.Format("Hello {0}!", place);
+	
+Q. What are the Default Access Modifiers in C#?
+
+   http://stackoverflow.com/questions/2521459/what-are-the-default-access-modifiers-in-c	
+	
+Q. Benefits of implementing an interface?
+   
+    Unit test with Stubs / Mocks
+    Implement Dependency injection
+
+Q. When to use abstract classes?
+	   Use an abstract class to provide some concrete implementation but not allow instantiation. You can always instantiate an ordinary class which doesn't make sense if it can't stand alone. At the same time, an interface might not be enough if there's a concrete implementation that's identical in all implementing classes. An abstract class is just enough.
+
+	Interface: contract only, no implementation, no instantiation
+	Abstract class: contract, some implementation, no instantiation
+	Class: contract, implementation, instantiation
+
+Q. Whats is TDD(Test Deriven Development)?
+
+Q. IOC(Inversion of Control Container) Pattern?
+  
+	The Inversion of Control (IoC) and Dependency Injection (DI) patterns are all about removing dependencies from your code.
+
+	For example, say your application has a text editor component and you want to provide spell checking. Your standard code would look something like this:
+
+	public class TextEditor
+	{
+		private SpellChecker checker;
+		public TextEditor()
+		{
+			this.checker = new SpellChecker();
+		}
+	}
+	What we've done here is create a dependency between the TextEditor and the SpellChecker. In an IoC scenario we would instead do something like this:
+
+	public class TextEditor
+	{
+		private ISpellChecker checker;
+		public TextEditor(ISpellChecker checker)
+		{
+			this.checker = checker;
+		}
+	}
+	Now, the client creating the TextEditor class has the control over which SpellChecker implementation to use. We're injecting the TextEditor with the dependency.
+
+Q. Method Hiding in C#?
+   Functions of the base class are available to the derived class. If the derived class is not happy, one of the functions available to it from the base class can define its own version of the same function with the same function signature, just differing in implementation. This new definition hides the base class definition. Take the following program for example.
+   
+	
+Q. Static vs Singleton class in C#?
+    Singleton object stores in Heap but, static object stores in stack
+	We can clone the object of Singleton but, we can not clone the static class object
+	Singleton class follow the OOP(object oriented principles) but not static class
+	we can implement interface with Singleton class but not with Static class.
+
+Q module.config vs module.run in AngularJS?
+   Here's the calling order:
+
+	app.config()
+	app.run()
+	directive's compile functions (if they are found in the dom)
+	app.controller()
+	directive's link functions (again, if found)
+    
+	Configuration block – This block is executed during the provider registration and configuration phase.
+	Only providers and constants can be injected into configuration blocks.
+	This block is used to inject module wise configuration settings to prevent accidental instantiation of services before they have been fully configured. This block is created using config() method.
+	
+	
+	Run blocks - get executed after the injector is created and are used to kickstart the application. Only instances and constants can be injected into run blocks. 
+	run block is a great place to put event handlers that need to be executed at the root level for the application. For example, authentication handlers.
+
+	Run blocks are the closest thing in Angular to the main method. A run block is the code which needs to run to kickstart the application. It is executed after all of the service have been configured and the injector has been created. Run blocks typically contain code which is hard to unit-test, and for this reason should be declared in isolated modules, so that they can be ignored in the unit-tests.
+	
+	
+Q. interface vs abstract? Why interface though we have abstract class?
+
+Q. as keyword vs typecasting in C#?
+
+Q. Call by value vs call by reference?
+
+Q. Delegate vs events?
+
+Q. Finalize vs Disose?
+
+Q. Garbage Collection in C#?
+
+Q. Value type vs reference Type?
+
+Q. Difference between Array vs Collections in C#?
+
+Q. Can we have mutiple url for one Action method in MVC?
+
+Q. CLR?
+   CLR (Common Language Runtime) is the execution environment for .Net applications.
+   It is CLR responsible for bringing your application to life while it executes
+   and it is also CLRS's job to tear down your application when it finish execution and have un-recoverable error.
+
+   Here are some of the services CLR provides while managing your application.
+
+   Memory Management- The CLR is actively treacking all of the memory that your porgram uses.
+   and it knows when your program is finished with memory.So it will clean things up.and allow your program to continue to have enough memory as it runs.
+   
+	CLR also virtualizes your execution environment.
+	We dont have to worry what version of operating system the application is executing on,
+	you dont have to worry about the specific CPU installed on machine.
+	Whether the CPU is 32 bit or 64 bit or how many cores are present?
+	What instructions set are availalble.CLR takes care of all things and make sure you application run correctly.
+	
+	
+	
+Q. String vs String Builder?
+
+Q. Difference between compiler and JIT Compiler?
+	
+Q. What is pre-link vs Post-link function in Angular custom deirective?
+
+Q. Apply() vs call() in Javascript?
+
+Q. CSRF(Cross site Request Forgery attack)?
+
+Q. Features of HTML5? 
+
+Q. Cross site scripting attack?
+
+Q. What is Closure in javascript?
+
+Q.What is a closure?
+	A closure is an inner function that has access to the outer (enclosing) function’s variables—scope chain.
+	The closure has three scope chains:
+	it has access to its own scope (variables defined between its curly brackets),
+	it has access to the outer function’s variables,
+	and it has access to the global variables.
+
+	The inner function has access not only to the outer function’s variables, but also to the outer function’s parameters. Note that the inner function cannot call the outer function’s arguments object, however, even though it can call the outer function’s parameters directly.
+
+	You create a closure by adding a function inside another function.
+
+Q. IIFE pattern
+
+Q. Inheritance in javascript?
+
+Q. http vs https?
+
+Q. Write your own ArrayList class with Add(object item) method?
+
+Q. Quick sort and Merge Sort?
+
+Q. Server Side Asynchronous call back function?
+
+Q. How to use IComparable interface(Without LINQ) for Sorting vs LinQ Sorting??
+
+Q. c# Sorting an array with IComparable Interface?
+
+Q. Pub/Sub Design pattern?
+
+Q. What is Single Responsibility principle?
+   https://visualstudiomagazine.com/articles/2016/11/15/single-responsibility-design-csharp-live360.aspx
+   
+Q. Apply() vs Call() in Javascript?
+   
+   The apply() method is identical to call(), except apply() requires an array as the second parameter. The array represents the arguments for the target method."
+   
+Q. Compile and linking function in AngularJS?
+
+   The order in which functions executes inside custom directive.
+   linking function executes only once.
+	
+   Controller Function Executes
+   The first function to execute for each instance is the controller function.
+   
+   Pre-link Executes
+   don’t have transcluded content and the template isn’t linked to the scope because the bindings aren’t setup.
+   
+   Post-link Executes
+   
+   Post link is the last function to execute.
+   Now the transclusion is complete, the template is linked to a scope, and the view will update with data bound values after the next digest cycle .
+
+   In post-link it is safe to manipulate the DOM, attach event handlers, inspect child elements, and setup observations on attributes and watches on the scope.
+
+   
+   http://odetocode.com/blogs/scott/archive/2014/05/28/compile-pre-and-post-linking-in-angularjs.aspx
+ 
+ Q. Static vs non-static constructor in C#?
+
+	 Static data is equivalent to global data.  Everybody in the program sees the same data.  If someone changes the data then everybody else will see the change as well.  Static data is useful for sharing information across a program such as database connection strings or log files.  There is only one copy of static data in memory in general.  (There are exceptions such as when dealing with multiple appdomains).
+
+	When you create an instance of a class you are effectively allocating some memory to hold your own copy of the instance data defined by the class.  If you create 5 instances of a class then you get 5 separate memory locations where each location has its own copy of the instance data.  Each memory block is independent of the others.	
+
+
+Q. $rootscope in AngularJS?
+   Every application has a single root scope.
+   All other scopes are descendant scopes of the root scope.
+   Scopes provide separation between the model and the view, via a mechanism for watching the model for changes.
+   They also provide event emission/broadcast and subscription facility
+   
+Q. let keyword in C#?
+
+
+Q. C# compiler vs JIT compiler?
+   NET uses an intermediate language called MSIL, sometimes abbreviated as IL. The compiler reads your source code and produceemits MSIL. When you run the program, the .NET Just In Time (JIT) compiler reads your MSIL code and produces an executable application in memory. You won't see any of this happen, but it's a good idea to know what's going on behind the scenes.
+   
+Q. How can we use stored procedures in entity frame work?
+Q. How to delete the duplicate records in SQL Server?
+   
+Q. If you have 2 methods in a class method1(T input) and method1(string input)
+   If i invoke method1("Aftab") which will be invoked?
+
+Q. Difference betwen == and === in Javascript?
+     
+	 
+-- AMAZon Questions-------
+Q. How can you develop an app like bookmyshow(Entity,table and UI)
+	 
+	 
+Q. 
+1. Life cycle of MVC
+   The Request Life Cycle
+	It is the sequence of events that happen every time an HTTP request is handled by our application.
+
+	The entry point for every MVC application begins with routing. After the ASP.NET platform has received a request, it figures out how it should be handled through the URL Routing Module.
+
+	Modules are .NET components that can hook into the application life cycle and add functionality. The routing module is responsible for matching the incoming URL to routes that we define in our application.
+
+	All routes have an associated route handler with them and this is the entry point to the MVC framework.
+
+	Route Handler
+	The MVC framework handles converting the route data into a concrete controller that can handle requests. After the controller has been created, the next major step is Action Execution. A component called the action invoker finds and selects an appropriate Action method to invoke the controller.
+
+	After our action result has been prepared, the next stage triggers, which is Result Execution. MVC separates declaring the result from executing the result. If the result is a view type, the View Engine will be called and it's responsible for finding and rending our view.
+
+	If the result is not a view, the action result will execute on its own. This Result Execution is what generates an actual response to the original HTTP request.
+
+2. Minification and bundling in ASP.Net MVC.
+3. How to make Jquery Ajax call?
+4. How to pass parameter in Jquery Ajax call?
+5. How to maintain session in MVC?
+6. TempData, ViewData and ViewBag?
+7. Hashtable vs Dictionary?
+8. ViewState and Session in asp.net?
+    
+	System.Web.HttpContext.Current.Session["sessionString"] = sessionValue;
+	
+	// Load session from HttpContext. 
+    ViewData["sessionString"] = System.Web.HttpContext.Current.Session["sessionString"] as String; 
+			
+9. State Management in Asp.Net?
+10. Interface and abstract?
+11. Sealed keyword in C#?
+12. New features in .net version?
+13. View in Microsoft SQL Server?
+14. DataContext in Entity Framework?
+15. Approaches in Entity Framework?
+16. GAC and DLL HELL in world of .NET?
+	 
+	 
+More Questions on Asp.net MVC
+	Mvc design Pattern?
+	How to pass data from view to model?
+	Binding data from db..how to bind data using JQuery?
+	Validation in asp.net?
+	Ajax
+	Ajax helper
+	Event argument
+	How to persist data in temp data
+	Mvc architecture diagram
+	Model.isvalidate
+	How to use JQuery to bind data to model
+	How to bind more than one model to single view
+
+	Diff between storing value in hidden  field and view state
+	Which will return last updated value in identity column
+	Wht is constraints for view
+	 
+	 For other MVC Questions and Answers Please check this URL
+	 https://www.codeproject.com/articles/556995/asp-net-mvc-interview-questions-with-answers
+	 
