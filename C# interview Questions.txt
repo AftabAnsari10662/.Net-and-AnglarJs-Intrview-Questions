@@ -191,3 +191,41 @@ Ref: The ref keyword is used to pass an argument as a reference. This means that
 	GC.WaitForPendingFinalizers();
 	it will call GC explicitly throughout your code, don't forget to call GC.WaitForPendingFinalizers(); after GC.Collect().
 	
+
+25. Difference between static class and singleton pattern  in C#?
+		  Static Class:-
+
+		You cannot create the instance of static class.
+		Loaded automatically by the .NET Framework common language runtime (CLR) when the program or namespace containing the class is loaded.
+		Static Class cannot have constructor.
+		We cannot pass the static class to method.
+		We cannot inherit Static class to another Static class in C#.
+		A class having all static methods.
+		Better performance (static methods are bonded on compile time)
+		Singleton:-
+
+		You can create one instance of the object and reuse it.
+		Singleton instance is created for the first time when the user requested.
+		Singleton class can have constructor.
+		You can create the object of singleton class and pass it to method.
+		Singleton class does not say any restriction of Inheritance.
+		We can dispose the objects of a singleton class but not of static class.
+		Methods can be overridden.
+		Can be lazy loaded when need (static classes are always loaded).
+		We can implement interface(static class can not implement interface).
+		
+		
+26. Difference between Virtual and Abstract Methods in C#?
+  
+		First of all you should know the difference between a virtual and abstract method.
+
+		Abstract Method
+
+		Abstract Method resides in abstract class and it has no body.
+		Abstract Method must be overridden in non-abstract child class.
+
+		Virtual Method
+
+		Virtual Method can reside in abstract and non-abstract class.
+		It is not necessary to override virtual method in derived but it can be.
+		Virtual method must have body ....can be overridden by "override keyword".....
