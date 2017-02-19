@@ -1,0 +1,193 @@
+1. Difference between ReadOnly and Constant in C#?
+	 ReadOnly :The value will be initialized only once from the constructor of the class.
+	 The difference is that the value of a static readonly field is set at run time, so it can have a different value for different executions of the program.
+	 However, the value of a const field is set to a compile time constant
+
+2. 	 Difference between IEnumerable vs List in C# ?
+
+	One important difference between IEnumerable and List (besides one being an interface and the other being a concrete class) is that IEnumerable is read-only and List is not.
+
+	So if you need the ability to make permanent changes of any kind to your collection (add & remove), you'll need List. If you just need to read, sort and/or filter your collection, IEnumerable is sufficient for that purpose.
+	
+
+3. 	What is the Difference between ArrayList and List Class in C#?
+   
+   
+4. What is static constructor in C#?
+
+   A static constructor is used to initialize any static data, or to perform a particular action that needs performed once only. It is called automatically before the first instance is created or any static members are referenced.
+
+	Static constructors have the following properties:
+
+	A static constructor does not take access modifiers or have parameters.
+	A static constructor is called automatically to initialize the class before the first instance is created or any static members are referenced.
+	A static constructor cannot be called directly.
+	The user has no control on when the static constructor is executed in the program.
+	A typical use of static constructors is when the class is using a log file and the constructor is used to write entries to this file.
+	Static constructors are also useful when creating wrapper classes for unmanaged code, when the constructor can call the LoadLibrary method.
+	
+	
+5. 	Q. Hashtable vs Dictionary in C#?
+	Difference between Hashtable and Dictionary. Hashtable and Dictionary are collection of data structures to hold data as key-value pairs. Dictionary is generic type, hash table is not a generic type. The Hashtable is a weakly typed data structure, so you can add keys and values of any Object Type to the Hashtable.
+
+6 . Why Dictionary is fast compare to list  in C#?
+ http://stackoverflow.com/questions/16977694/c-sharp-why-is-dictionary-so-much-faster-than-list
+
+7. Differences between Hashtable and Dictionary
+
+	Dictionary:
+
+	Add method throws an ArgumentException when attempting to add a duplicate key.
+
+	KeyNotFoundException is thrown when a requested key is not present.
+
+	TryGetValue method as a more efficient way to retrieve values if a program often must try key values that are not in the dictionary,
+
+	use the ContainsKey method to test whether a key exists before calling the Add method.
+
+	The ConcurrentDictionary<TKey, TValue> class should be used when multiple threads might be accessing the collection simultaneously.
+
+	Dictionary returns error if we try to find a key which does not exist.
+	Dictionary faster than a Hashtable because there is no boxing and unboxing.
+	Dictionary is a generic type which means we can use it with any data type.
+	Hashtable:
+
+	Hashtable returns null if we try to find a key which does not exist.
+	Hashtable slower than dictionary because it requires boxing and unboxing.
+	Hashtable is not a generic type,
+
+8. Why Dictionary is much more faster than List  in C#?
+ http://stackoverflow.com/questions/16977694/c-sharp-why-is-dictionary-so-much-faster-than-list
+ 
+ When using Dictionary you are using a key to retrieve your information, which enables it to find it more efficiently, with List you are using Single Linq expression, which since it is a list, has no other option other than to look in entire list for wanted the item.
+ 
+ 
+
+9. List vs ArrayList  in C#?
+ Ans: Yes, pretty much. List<T> is a generic class. It allows storing values of a specific type without casting to or from object (which would have incurred boxing/unboxing overhead when T is a value type in the ArrayList case). ArrayList simply stores object references. As a generic collection, List<T> implements the generic IEnumerable<T> interface and can be used easily in LINQ (without requiring any Cast or OfType call).
+
+ArrayList belongs to the days that C# didn't have generics. It's deprecated in favor of List<T>. You shouldn't use ArrayList in new code that targets .NET >= 2.0 unless you have to interface with an old API that uses it.
+
+
+ArrayList provides some thread-safety through the Synchronized property, which returns a thread-safe wrapper around the collection. The wrapper works by locking the entire collection on every add or remove operation. Therefore, each thread that is attempting to access the collection must wait for its turn to take the one lock. This is not scalable and can cause significant performance degradation for large collections.
+
+List<T> does not provide any thread synchronization; user code must provide all synchronization when items are added or removed on multiple threads concurrently.
+
+
+10. What is the difference between Dictionary and List  in C#?
+
+		http://stackoverflow.com/questions/7914830/what-is-the-difference-between-list-and-dictionary-in-c-sharp
+		
+		  List<> and Dictionary<,> - pretty different data structures which used for different purposes, List is simply a set of items and Dictionary is a set of key-value pairs.
+
+		Dictionary is pretty useful when you have a set of complex objects and want to have fast access by let's say ObjectName/ObjectId, in this case you create IDictionary<string, TObject> where key would be ObjectId and Value would be an object itself.
+
+		Some differences:
+
+		List persist order of the items, Dictionary does not
+		List allow fast access by index
+		List support built in QuickSort algorithm for fast data sorting
+		Dictionary allows ~O(1) time complexity to access an item (value) by a key
+
+11. What is Static Constructor in C# ? What is the use ?
+
+	A static constructor is used to initialize any static data, or to perform a particular action that needs performed once only. It is called automatically before the first instance is created or any static members are referenced.
+
+	Static constructors have the following properties:
+
+	A static constructor does not take access modifiers or have parameters.
+	A static constructor is called automatically to initialize the class before the first instance is created or any static members are referenced.
+	A static constructor cannot be called directly.
+	The user has no control on when the static constructor is executed in the program.
+	A typical use of static constructors is when the class is using a log file and the constructor is used to write entries to this file.
+	Static constructors are also useful when creating wrapper classes for unmanaged code, when the constructor can call the LoadLibrary method.
+	
+12. About Static Constructor  in C#?
+		
+	1.It can only access the static member(s) of the class.
+
+	Reason : Non static member is specific to the object instance. If static constructor are allowed to work on non static members it will reflect the changes in all the object instance, which is impractical.
+
+	2.There should be no parameter(s) in static constructor.
+
+	Reason: Since, It is going to be called by CLR, nobody can pass the parameter to it. 3.Only one static constructor is allowed.
+
+	Reason: Overloading needs the two methods to be different in terms of method/constructor definition which is not possible in static constructor.
+
+	4.There should be no access modifier to it.
+
+	Reason: Again the reason is same call to static constructor is made by CLR and not by the object, no need to have access modifier to it
+	
+
+13. How to implement thread safe Singleton class  in C#?	
+14. What is Static Override methods in C# ?
+15. Readonly vs Static keyword  in C#.
+16. Base and New keyword in C#.
+  The base keyword is used to refer to the base class when chaining constructors or when you want to access a member (method, property, anything) in the base class that has been overridden or hidden in the current class. For example.
+  Base is used when you override a method in a derived class but just want to add additional functionality on top of the original functionality
+
+	For example:
+
+	  // Calling the Area base method:
+	  public override void Foo() 
+	  {
+		 base.Foo(); //Executes the code in the base class
+
+		 RunAdditionalProcess(); //Executes additional code
+	  }
+
+17. Difference between Ref and Out parameter in C#.
+Ans- 
+The ref modifier means that:
+ a) The value is already set and The method can read and modify it.
+
+ The out modifier means that:
+ a) The Value isn't set and can't be read by the method until it is set.
+ b) The method must set it before returning.
+
+ Or, ref tells the compiler that the object is initialized before entering the function, while out tells the compiler that the object will be initialized inside the function.
+
+18. Primitive and non-premitive types in C#
+
+19. What is the difference between Finalize() and Dispose()  in C#?
+  
+
+	Finalizers are run by the Garbage Collection before an object that is eligible for collection is reclaimed.  Dispose() is meant for cleaning up unmanaged resources, like network connections, files, handles to OS stuff, &c. It works best in conjunction with the using block where the compiler makes sure that  Dispose() will be called immediately once you are done with an object – and also ensures that you cannot work with the object anymore once it's disposed.
+
+	Finalize: undeterministic nondeterministic destructor/finalizer called automatically by the Garbage Collector when there are no more references to this instance.
+	Dispose: deterministically called by the developer on an object implementing IDisposable to free resources.
+
+
+
+20. How is the using() pattern useful? What is IDisposable? How does it support deterministic finalization?
+
+	As a rule, when you use an IDisposable object, you should declare and instantiate it in a using statement. The using statement calls the Dispose method on the object in the correct way, and (when you use it as shown earlier) it also causes the object itself to go out of scope as soon as Dispose is called. Within the using block, the object is read-only and cannot be modified or reassigned.
+	The using statement ensures that Dispose is called even if an exception occurs while you are calling methods on the object. You can achieve the same result by putting the object inside a try block and then calling Dispose in a finally block; in fact, this is how the using statement is translated by the compiler. The code example earlier expands to the following code at compile time (note the extra curly braces to create the limited scope for the object):
+
+
+
+
+
+21. Difference between List<T> and LinkedList<T>  in C#?
+ Well, List<T> is basically backed by an array which is usually bigger than the current number of items. The elements are put in an array, and a new array is created when the old one runs out of space. This is fast for access by index, but slow at removing or inserting elements within the list or at the start. Adding/removing entries at the end of the list is reasonably cheap.
+
+LinkedList<T> is a doubly-linked list - each node knows its previous entry and its next one. This is fast for inserting after/before a particular node (or the head/tail), but slow at access by index.
+
+LinkedList<T> will usually take more memory than List<T> because it needs space for all those next/previous references - and the data will probably have less locality of reference, as each node is a separate object. On the other hand, a List<T> can have a backing array which is much larger than its current needs.
+
+22. ref vs out keyword in C#?
+Ref: The ref keyword is used to pass an argument as a reference. This means that when value of that parameter is changed in the method, it gets reflected in the calling method. An argument that is passed using a ref keyword must be initialized in the calling method before it is passed to the called method.
+
+
+23. What is using Statement in C#?
+	 C#, through the .NET Framework common language runtime (CLR), automatically releases the memory used to store objects that are no longer required. The release of memory is non-deterministic; memory is released whenever the CLR decides to perform garbage collection. However, it is usually best to release limited resources such as file handles and network connections as quickly as possible.
+
+	The using statement allows the programmer to specify when objects that use resources should release them. The object provided to the using statement must implement the IDisposable interface. This interface provides the Dispose method, which should release the object's resources.
+
+24. How to Force Garbage collector to run in .NET?
+	The best practise is to not force a garbage collection in most cases.
+
+	GC.Collect();
+	GC.WaitForPendingFinalizers();
+	it will call GC explicitly throughout your code, don't forget to call GC.WaitForPendingFinalizers(); after GC.Collect().
+	
